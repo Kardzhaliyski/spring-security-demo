@@ -29,6 +29,7 @@ public class JwtUtils {
                 .withExpiresAt(Instant.now().plus(1, ChronoUnit.HOURS))
                 .withSubject(principal.getId().toString())
                 .withClaim("e", principal.getEmail())
+                .withClaim("n", principal.getName())
                 .withClaim("a", principal.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .withIssuer(ISSUER)
                 .sign(jwtProperties.getAlgorithm());
@@ -45,6 +46,7 @@ public class JwtUtils {
         return UserPrincipal.builder()
                 .id(Long.parseLong(token.getSubject()))
                 .email(token.getClaim("e").asString())
+                .name(token.getClaim("n").toString())
                 .authorities(extractAuthoritiesFromClaim(token))
                 .build();
     }
