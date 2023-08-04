@@ -1,0 +1,22 @@
+jwt:
+  security:
+    secret-key: 74dfdd646b0f64702495a308643bc21c429f1aead1cd967abb88e2329910f176dfb200b240165236fd4cef85b6b3a168b6cb88b5e49cdef14c9f139b12dc88ca
+    issuer: zdravko.kardzhaliyski@gmail.com
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/security_demo?useSSL=false
+    username: root
+    password: 1111
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: TRUE
+    hibernate:
+      ddl-auto: update
+
+server:
+  error:
+    include-message: ON_PARAM # return message on error if message param is included with query string http://localhost:8080/login?message
