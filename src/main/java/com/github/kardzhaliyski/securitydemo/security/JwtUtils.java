@@ -1,6 +1,7 @@
 package com.github.kardzhaliyski.securitydemo.security;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.github.kardzhaliyski.securitydemo.properties.JwtProperties;
@@ -35,7 +36,7 @@ public class JwtUtils {
                 .sign(jwtProperties.getAlgorithm());
     }
 
-    public DecodedJWT decode(String token) {
+    public DecodedJWT decode(String token) throws TokenExpiredException {
         return JWT.require(jwtProperties.getAlgorithm())
                 .withIssuer(ISSUER)
                 .build()

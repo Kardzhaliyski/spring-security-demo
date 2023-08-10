@@ -34,7 +34,7 @@ public class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         http
-                .cors(AbstractHttpConfigurer::disable) //todo
+//                .cors(AbstractHttpConfigurer::disable) //todo
                 .csrf(AbstractHttpConfigurer::disable) //todo
                 .formLogin(AbstractHttpConfigurer::disable)
                 .sessionManagement(m -> m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -1,6 +1,7 @@
 package com.github.kardzhaliyski.securitydemo.security;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     .map(jwtUtils::convert)
                     .map(UserPrincipalAuthenticationToken::new)
                     .ifPresent(authentication -> SecurityContextHolder.getContext().setAuthentication(authentication));
-        } catch (JWTDecodeException ignored) {
+        } catch (JWTDecodeException | TokenExpiredException ignored) {
             //ignored
         }
 

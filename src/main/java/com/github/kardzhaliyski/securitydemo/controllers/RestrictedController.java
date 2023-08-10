@@ -35,11 +35,16 @@ public class RestrictedController {
     }
 
     @GetMapping({"/all", "/"})
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+//    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
 //    @PostAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<String> all(@AuthenticationPrincipal UserPrincipal principal) {
-        return ResponseEntity.ok("You have entered restricted area for Users and Admins! Nice! " + principal.getName());
+    public ResponseEntity<String> all() {
+        return ResponseEntity.ok("You have entered restricted area for Users and Admins! Nice! " );
     }
 
-
+    @GetMapping({"/both"})
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+//    @PostAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public ResponseEntity<String> both(@AuthenticationPrincipal UserPrincipal principal) {
+        return ResponseEntity.ok("You have entered restricted area for Users and Admins! Nice! " + principal.getName());
+    }
 }
